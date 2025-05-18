@@ -1,0 +1,400 @@
+# coding: utf-8
+
+import os
+import uuid  # For generating unique IDs
+import numpy as np
+import nltk
+import openai
+import chromadb
+import config  # Assuming config.py exists with necessary settings
+from langdetect import detect
+from llm_prompts import SPANISH_SYSTEM_PROMPT, ENGLISH_SYSTEM_PROMPT, SPANISH_QUERY_PROMPT, ENGLISH_QUERY_PROMPT, format_prompt
+from chunking import chunk_text, chunk_metadata  # Import chunk_metadata
+from typing import List, Optional, Dict, Any, Union
+from dotenv import load_dotenv
+
+load_dotenv()  # Load from .env file
+
+
+
+
+def ensure_nltk_resources():
+    """Ensure all required NLTK resources are downloaded."""
+    print("Checking for NLTK resources...")
+    try:
+        nltk.data.find('tokenizers/punkt')
+        print("NLTK punkt tokenizer found")
+    except LookupError:
+        print("Downloading NLTK punkt tokenizer")
+        nltk.download('punkt')
+
+
+ensure_nltk_resources()
+
+try:
+    nltk.data.find('tokenizers/punkt/PY3/english.pickle')
+except nltk.downloader.DownloadError:
+    nltk.download('punkt')
+
+openai.api_key = os.getenv("API_KEY")
+
+# Global variables (initialized ONCE in initialize_models)
+client: chromadb.Client = None
+collection: chromadb.Collection = None
+
+
+def initialize_models():
+    """Initializes the ChromaDB client and collection ONCE."""
+    global client, collection
+    
+    if client is not None and collection is not None:
+        print("ChromaDB already initialized. Skipping initialization.")
+        return  # Exit if already initialized
+    
+    print("Initializing ChromaDB client and collection...")
+    try:
+        # Use PersistentClient but with a fresh start each time
+        if hasattr(config, 'CHROMA_DB_PATH') and config.CHROMA_DB_PATH:
+            # Create dirs if they don't exist
+            import os
+            os.makedirs(config.CHROMA_DB_PATH, exist_ok=True)
+            
+            # Delete existing DB files to start fresh (optional)
+            import shutil
+            try:
+                # Delete all files in the directory
+                for filename in os.listdir(config.CHROMA_DB_PATH):
+                    file_path = os.path.join(config.CHROMA_DB_PATH, filename)
+                    if os.path.isfile(file_path):
+                        os.unlink(file_path)
+                    elif os.path.isdir(file_path):
+                        shutil.rmtree(file_path)
+                print(f"Cleared existing ChromaDB files from {config.CHROMA_DB_PATH}")
+            except Exception as e:
+                print(f"Note: Failed to clear ChromaDB directory: {e}")
+            
+            # Now initialize with clean persistent storage
+            client = chromadb.PersistentClient(path=config.CHROMA_DB_PATH)
+        
+        # Get collection name from config or use default
+        collection_name = getattr(config, 'CHROMA_COLLECTION_NAME', 'my_rag_collection')
+        
+        # Create a new collection
+        collection = client.create_collection(name=collection_name)
+        print(f"ChromaDB initialized with fresh collection: {collection.name}")
+        
+    except Exception as e:
+        print(f"Error initializing ChromaDB: {e}")
+        client = None
+        collection = None
+        raise  # Re-raise to halt execution
+    
+
+def read_text_from_file(file_path: str) -> Optional[str]:
+    """Read text content from a file."""
+    print(f"Reading text from file: {file_path}")
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text = file.read()
+        print(f"Successfully read {len(text)} characters.")
+        return text
+    except Exception as e:
+        print(f"Error reading text from file: {e}")
+        return None
+
+
+def process_document(file_path: str, chunking_strategy: str = 'basic') -> bool:
+    """Process a document: read text, chunk it, and store in ChromaDB."""
+    global client, collection
+
+    if client is None or collection is None:
+        print("ChromaDB client or collection not initialized. Please call initialize_models() first.")
+        return False
+
+    print(
+        f"\n{'=' * 50}\nPROCESSING DOCUMENT: {file_path} WITH CHROMA "
+        f"({chunking_strategy} chunking)\n{'=' * 50}"
+    )
+
+    try:
+        text = read_text_from_file(file_path)
+        if not text:
+            return False
+
+        try:
+            detected_lang = detect(text)
+            print(f"Detected document language: {detected_lang}")
+        except Exception as e:
+            print(f"Error detecting language: {e}")
+            detected_lang = 'es'
+
+        chunks = chunk_text(text, language=detected_lang)
+        if not chunks:
+            print("No chunks to process after chunking.")
+            return False
+
+        print(f"Creating embeddings for {len(chunks)} chunks using OpenAI API")
+
+        all_embeddings: List[List[float]] = []
+        chunk_ids: List[str] = []
+        metadatas: List[Dict[str, Any]] = []
+        batch_size: int = 50
+
+        for i in range(0, len(chunks), batch_size):
+            batch = chunks[i:i + batch_size]
+            try:
+                response = openai.embeddings.create(
+                    input=batch, model=config.OPENAI_EMBEDDING_MODEL
+                )
+                batch_embeddings = [item.embedding for item in response.data]
+                all_embeddings.extend(batch_embeddings)
+                print(
+                    f"Created embeddings batch {i // batch_size + 1}/"
+                    f"{(len(chunks) - 1) // batch_size + 1}"
+                )
+
+                batch_ids = [str(uuid.uuid4()) for _ in batch]
+                chunk_ids.extend(batch_ids)
+
+                # Prepare metadata, incorporating chunk_metadata if available
+                batch_metadata: List[Dict[str, Any]] = [{"source": file_path}] * len(
+                    batch
+                )  # Default source
+
+                if chunk_metadata:  # Check if chunk_metadata is available
+                    for j, chunk_idx in enumerate(range(i, i + len(batch))):
+                        if (
+                            chunk_idx < len(chunk_metadata)
+                            and chunk_metadata[chunk_idx]
+                            and "metadata" in chunk_metadata[chunk_idx]
+                        ):
+                            batch_metadata[j].update(
+                                chunk_metadata[chunk_metadata[chunk_idx]["metadata"]]
+                            )  # Merge metadata
+                metadatas.extend(batch_metadata)
+
+            except Exception as e:
+                print(f"Error creating embeddings for batch starting at {i}: {str(e)}")
+                return False
+
+        try:
+            collection.add(
+                ids=chunk_ids,
+                embeddings=all_embeddings,
+                documents=chunks,
+                metadatas=metadatas,
+            )
+            print(f"Added {len(chunks)} chunks to ChromaDB.")
+            return True
+
+        except Exception as e:
+            print(f"Error adding chunks to ChromaDB: {str(e)}")
+            return False
+
+    except Exception as e:
+        print(f"Error processing document: {str(e)}")
+        import traceback
+
+        traceback.print_exc()
+        return False
+
+
+def retrieve_relevant_chunks(
+    question: str, top_k: Optional[int] = None
+) -> List[Dict[str, Any]]:
+    """Retrieve the most relevant chunks for a given question using ChromaDB."""
+    global client, collection
+
+    if client is None or collection is None:
+        print(
+            "ChromaDB not initialized. Call initialize_models() before retrieving chunks."
+        )
+        return []
+
+    if top_k is None:
+        top_k = config.TOP_K_CHUNKS
+
+    print(f"Retrieving top {top_k} chunks for question: {question}")
+
+    # Check if collection has documents
+    try:
+        count = collection.count()
+        print(f"Collection has {count} documents")
+        if count == 0:
+            print("Warning: Collection is empty. Add documents before querying.")
+            return []
+    except Exception as e:
+        print(f"Error checking collection count: {e}")
+        return []
+    
+
+    try:
+        response = openai.embeddings.create(
+            input=[question], model=config.OPENAI_EMBEDDING_MODEL
+        )
+        question_embedding = response.data[0].embedding
+    except Exception as e:
+        print(f"Error creating question embedding: {e}")
+        return []
+  
+        
+    try:
+        # Make sure n_results doesn't exceed collection count
+        actual_top_k = min(top_k, count) if count > 0 else 1
+
+        results = collection.query(
+            query_embeddings=[question_embedding],
+            n_results=top_k,
+            include=["documents", "metadatas", "distances"],
+        )
+
+        relevant_chunks: List[Dict[str, Any]] = []
+        for i in range(len(results["ids"][0])):
+            chunk_data: Dict[str, Any] = {
+                "index": results["ids"][0][i],  # Or extract index from ID if needed
+                "score": results["distances"][0][i],
+                "text": results["documents"][0][i],
+            }
+            if results["metadatas"] and results["metadatas"][0] and i < len(
+                results["metadatas"][0]
+            ):
+                chunk_data["metadata"] = results["metadatas"][0][i]
+            relevant_chunks.append(chunk_data)
+
+        return relevant_chunks
+
+    except Exception as e:
+        print(f"Error during ChromaDB retrieval: {e}")
+        return []
+
+
+def answer_question(question: str, context: str, question_lang: str = 'es') -> str:
+    """Generate an answer to the question based on the context using OpenAI API."""
+
+    print(f"Generating answer for question: {question}")
+    print(f"Initial question language: {question_lang}")
+
+    try:
+        detected_lang = detect(question)
+        print(f"Detected question language: {detected_lang}")
+    except Exception as e:
+        print(f"Error detecting language: {e}")
+        detected_lang = 'es'
+
+    if detected_lang.startswith('en'):
+        system_prompt = ENGLISH_SYSTEM_PROMPT
+        query_prompt_template = ENGLISH_QUERY_PROMPT
+    else:
+        system_prompt = SPANISH_SYSTEM_PROMPT
+        query_prompt_template = SPANISH_QUERY_PROMPT
+
+    formatted_prompt = format_prompt(query_prompt_template, context, question)
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": formatted_prompt},
+    ]
+
+    try:
+        response = openai.chat.completions.create(
+            model=config.OPENAI_QA_MODEL,
+            messages=messages,
+            temperature=config.OPENAI_TEMPERATURE,
+            max_tokens=config.OPENAI_MAX_TOKENS,
+        )
+        answer = response.choices[0].message.content
+        print(f"Generated answer ({detected_lang}): {answer}")
+        return answer
+    except Exception as e:
+        print(f"Error generating answer with OpenAI: {e}")
+        return "No se pudo generar una respuesta."
+
+
+def query_document(
+    question: str, question_lang: str = 'es', return_sources: bool = False
+) -> Union[str, Dict[str, Any]]:
+    """Query the processed document with a question using OpenAI and ChromaDB."""
+
+    print(f"\n{'=' * 50}\nQUERYING DOCUMENT WITH OPENAI and ChromaDB\n{'=' * 50}")
+    print(f"Question (initial lang: {question_lang}): {question}")
+
+    if client is None or collection is None:
+        print("No processed document found. Please process a document first.")
+        result = "Please process a document first using process_document()"
+        return {"answer": result, "sources": []} if return_sources else result
+
+    relevant_chunks = retrieve_relevant_chunks(question)
+
+    if not relevant_chunks:
+        print("No relevant chunks found.")
+        result = "No relevant information found."
+        return {"answer": result, "sources": []} if return_sources else result
+
+    context = "\n".join([chunk["text"] for chunk in relevant_chunks])
+    print(f"Combined context length: {len(context)} characters")
+
+    answer = answer_question(question, context, question_lang)
+
+    if return_sources:
+        return {"answer": answer, "sources": relevant_chunks}
+    else:
+        return answer
+
+
+if __name__ == "__main__":
+    # Example usage (assuming you have a config.py and a document.txt)
+    import os
+
+    # Create a dummy config.py if it doesn't exist
+    if not os.path.exists("config.py"):
+        with open("config.py", "w") as f:
+            f.write("OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY'\n")
+            f.write("CHROMA_DB_PATH = './chroma_db'\n")  # Example persistent path
+            f.write("OPENAI_EMBEDDING_MODEL = 'text-embedding-ada-002'\n")
+            f.write("OPENAI_QA_MODEL = 'gpt-3.5-turbo'\n")
+            f.write("CHROMA_COLLECTION_NAME = 'my_rag_collection'\n")
+            f.write("TOP_K_CHUNKS = 4\n")
+            f.write("OPENAI_TEMPERATURE = 0.7\n")
+            f.write("OPENAI_MAX_TOKENS = 200\n")
+
+    # Create a dummy document for testing
+    if not os.path.exists("document.txt"):
+        with open("document.txt", "w", encoding="utf-8") as f:
+            f.write("This is the first chunk of text.\n\n")
+            f.write("This is the second, slightly longer chunk.\n\n")
+            f.write("A third and final chunk for this example.")
+
+    text_file_path = "document.txt"
+    queries = [
+        "What is the first thing mentioned?",
+        "What is the second thing mentioned?",
+        "What is the third thing mentioned?",
+    ]
+
+    # Initialize ChromaDB ONCE at the beginning
+    initialize_models()
+
+    # Process the dummy document
+    success = process_document(text_file_path)
+    if success:
+        print("\nDocument processed and added to ChromaDB successfully.")
+
+        for query in queries:
+            print(f"\nQuery: {query}")
+            answer = query_document(query, return_sources=True)
+            if answer:  # Check if answer is not None
+                print(f"Answer: {answer['answer']}")
+                print("Source Chunks:")
+                for source in answer['sources']:
+                    print(f"  Score: {source['score']:.4f}")
+                    print(f"  Text: {source['text'][:150]}...")
+            else:
+                print("Error: query_document returned None.")
+
+    else:
+        print("\nDocument processing failed.")
+
+    # Optional: Clean up ChromaDB (for testing)
+    if client and collection:
+        client.delete_collection(name=collection.name)
+        print(f"\nChroma collection '{collection.name}' deleted.")

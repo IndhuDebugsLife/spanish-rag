@@ -1,0 +1,1 @@
+print("Esto es una prueba con caracteres españoles: áéíóúñü ¿¡")
