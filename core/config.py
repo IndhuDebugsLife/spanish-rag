@@ -9,7 +9,7 @@ CHUNK_SIZE = 500
 CHUNK_OVERLAP = 100
 
 # Retrieval configs
-TOP_K_CHUNKS = 7
+TOP_K_CHUNKS = 10
 
 
 # OpenAI Model for Embeddings

@@ -1,0 +1,67 @@
+--- Query: 2025-05-21 21:57:33 ---
+Question: What poor controls (internal control deficiency)
+
+SOURCES:
+  1. Data \ spanishroadcontract.txt
+     Text: 
+
+
+--- Processsed Block 883 (Text) ---
+As a result of the evaluation carried out, this superior control agency concludes the following:
+
+
+
+
+--- Processsed Block 884 (Heading) ---...
+
+  2. Data \ spanishroadcontract.txt
+     Text: # Evaluation of the Comptroller General of the Republic ...
+
+  3. Data \ spanishroadcontract.txt
+     Text: 
+
+
+--- Processsed Block 24 (Text) ---
+This report aims to give an account to the corresponding instances of the Comptroller General, of the result of the evaluation made to the documentation sent by the entity, as a support of its application for authorization of the additional provision of work No. 32 (hereinafter, PAO No. 32) ....
+
+  4. Data \ spanishroadcontract.txt
+     Text: It should be noted that, since the approval of Pao No. 23, the incidence of 15% of the amount of the original contract was exceeded; However, it has been verified that the entity did not proceed before the Comptroller General, the corresponding application for authorization prior to execution and payment, breaking the provisions of current regulations ....
+
+  5. Data \ spanishroadcontract.txt
+     Text: 
+
+
+--- Processsed Block 747 (text) ---
+Before what has been indicated by the entity, through the physical inspection act to the work of September 18, 2024, the report of the specialist in geology and geotechnics of the supervision was requested by which the instability and the mentioned modification were supported; However, at the date of issuance of this report, the entity has not sent the requested documentation ....
+
+  6. Data \ spanishroadcontract.txt
+     Text: ## B. Description of works verified by the Comptroller General of the Republic ...
+
+  7. Data \ spanishroadcontract.txt
+     Text: It should be noted that, attending to the beginning of the selective nature of government control, provided for in literal l) of article 9 of Law No. 27785, in the review of the aforementioned information above, the analysis of the activities or critical aspects or that denotes greater risk in the support of PAO No. 32. --- Process Ed Block 26 (Heading) ---
+
+  8. Data \ spanishroadcontract.txt
+     Text: 
+
+
+--- Processsed Block 242 (Text) ---
+In this context, through Office No. 000126-2024-CG/SCP of September 12, 2024 (within the period established in the Pao Directive), the previous control sub-management of additional work and supervision of the work of the Comptroller General, required complementary information to the entity, granting a period of five (5) business days until September 19, 2024 ....
+
+  9. Data \ spanishroadcontract.txt
+     Text: 
+
+
+--- Processsed Block 22 (Text) ---
+The previous control activity is related to the application for authorization, prior to the execution and payment, of the additional benefits that generate the additional budget of work No. 32 of the work: “Improvement of the Chuquicara Highway - Puente Quiroz - Tauca - Cabana - Huandoval - Pallasca, Tauca - Pallasca section” - Cui N ° 2078363 (hereinafter. National Transport-Provías Nacional (hereinafter, national provisions or entity), through Office No. 300-2024-MTC/20 of September 5, 2024 (File No. 0820240571794 of September 5, 2024) to the Comptroller General of the Republic (hereinafter, Comptroller General) ....
+
+  10. Data \ spanishroadcontract.txt
+     Text: 
+
+
+--- Processsed Block 29 (Text) ---
+c) Through Office No. 000126-2024-CG/SCP of September 12, 2024, received the same day by the entity, the Comptroller General requested complementary information of Pao N ° 32 ....
+
+
+Answer:
+An internal control deficiency in the entity is not specifically mentioned in the context. However, it is indicated that the entity did not processed the authorization request before the Comptroller's Officeprior action to the execution and payment of the additional provision of work No. 23, breaking the provisions of current regulations. In addition, the entity has not sent the requested documentation regarding the instability and modification mentioned in the physical inspection certificate to the work of September 18, 2024.
+------------------------------------------------

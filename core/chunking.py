@@ -188,6 +188,98 @@ def determine_chunk_size(text_section):
     return base_size
 
 
+def detect_document_title(text):
+    """Extract document title and return title with remaining text."""
+    title_pattern = re.compile(r'^\s*INFORME N°\s+\d+.*$', re.IGNORECASE | re.MULTILINE)
+    title_match = title_pattern.search(text)
+    if title_match:
+        title = title_match.group(0).strip()
+        remaining_text = text[title_match.end():]
+        print(f"Found Document Title: '{title}'")
+        return title, remaining_text
+    else:
+        print("No Document Title found matching the pattern.")
+        return None, text
+
+def find_sections(text):
+    """Find all sections in text and return sorted list with positions and headers."""
+    section_patterns = [
+        re.compile(r'#{1,3}\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Markdown headings
+        re.compile(r'^[IVX]+\.\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Roman numeral sections
+        re.compile(r'^\d+\.\d+\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Numbered sections
+        re.compile(r'^\s*[a-z\d]+\.\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Lettered/numbered list items as sections
+    ]
+    
+    sections = []
+    for pattern in section_patterns:
+        sections.extend([(match.start(), match.end(), match.group(0).strip()) for match in pattern.finditer(text)])
+    sections.sort(key=lambda x: x[0])   # Sort sections by their starting position
+    print(f"Found {len(sections)} sections")
+    return sections
+
+def determine_section_level(header):
+    """Determine hierarchy level of section header."""
+    if re.match(r'^[IVX]+\.', header):
+        return 1
+    elif re.match(r'^\d+\.\d+', header):
+        return 2
+    elif re.match(r'^\s*[a-z\d]+\.', header):
+        return 3
+    else:
+        return 1
+
+def build_parent_path(hierarchy_stack):
+    """Build breadcrumb-style parent path from hierarchy stack."""
+    if not hierarchy_stack:
+        return ""
+    return " > ".join([h["title"] for h in hierarchy_stack])
+
+def update_hierarchy_stack(hierarchy_stack, section_header, section_level):
+    """Update hierarchy stack with new section, removing deeper levels."""
+    # Remove deeper levels
+    hierarchy_stack = [h for h in hierarchy_stack if h["level"] < section_level]
+    # Add current section
+    hierarchy_stack.append({"level": section_level, "title": section_header, "type": "Section"})
+    return hierarchy_stack
+
+def create_chunk_with_metadata(text, chunk_type, current_metadata, parent_path=None, section_header=None):
+    """Create a chunk with appropriate metadata."""
+    chunk_meta = current_metadata.copy()
+    chunk_meta["Type"] = chunk_type
+    if parent_path:
+        chunk_meta["Parent"] = parent_path
+    if section_header:
+        chunk_meta["Section Heading"] = section_header
+    return {"text": text, "metadata": chunk_meta}
+
+def process_text_chunks(text, current_metadata, parent_path, language, chunk_overlap):
+    """Process text into chunks with metadata."""
+    chunks = []
+    if text.strip():
+        for c in sentence_based_chunking_with_semantic(text, determine_chunk_size(text), chunk_overlap, language):
+            chunks.append(create_chunk_with_metadata(c, "Paragraph", current_metadata, parent_path))
+            print(f"    Created Paragraph chunk: '{c[:80]}...'")
+    return chunks
+
+def add_dates_to_chunks(chunks):
+    """Extract dates from chunks and add to metadata."""
+    date_pattern = re.compile(r'\d{1,2}\s+de\s+\w+\s+de\s+\d{4}', re.IGNORECASE)
+    for chunk in chunks:
+        date_match = date_pattern.search(chunk["text"])
+        if date_match:
+            chunk["metadata"]["Date"] = date_match.group(0)
+            print(f"  Found Date '{chunk['metadata']['Date']}' in chunk: '{chunk['text'][:50]}...'")
+
+def replace_special_content_markers(chunks, table_map):
+    """Replace special content markers in chunks."""
+    final_chunks = []
+    for chunk in chunks:
+        chunk_text = chunk["text"]
+        for marker, special_content in table_map.items():
+            chunk_text = chunk_text.replace(marker, special_content)
+        final_chunks.append({"text": chunk_text, "metadata": chunk["metadata"]})
+    return final_chunks
+
 def chunk_text(text, language='spanish'):
     """Split text into chunks with dynamic size and hierarchical structure, extracting metadata."""
     global chunk_metadata
@@ -195,93 +287,63 @@ def chunk_text(text, language='spanish'):
     processed_text, table_map = preprocess_special_content(text)
     print(f"Number of special content blocks found: {len(table_map)}")
 
-    # --- Define patterns for hierarchical elements and metadata ---
-    #   Adjust these patterns to match the specific structure of your documents
-    title_pattern = re.compile(r'^\s*INFORME N°\s+\d+.*$', re.IGNORECASE | re.MULTILINE)
-    section_patterns = [
-        re.compile(r'#{1,3}\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Markdown headings
-        re.compile(r'^[IVX]+\.\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Roman numeral sections
-        re.compile(r'^\d+\.\d+\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Numbered sections
-        re.compile(r'^\s*[a-z\d]+\.\s+[A-ZÑÁÉÍÓÚ].*$', re.MULTILINE),   # Lettered/numbered list items as sections
-    ]
-    subsection_pattern = re.compile(r'^\d+\.\d+\s+[A-ZÑÁÉÍÓÚa-zñáéíóú].*$', re.MULTILINE)
-    clause_pattern = re.compile(r'^\(\w+\)\s+.*$', re.MULTILINE)   # (a), (i), etc.
-    date_pattern = re.compile(r'\d{1,2}\s+de\s+\w+\s+de\s+\d{4}', re.IGNORECASE)   # e.g., "14 de octubre de 2024"
-
     chunks_with_metadata = []
     current_metadata = {}
-    text_to_chunk = processed_text   # Initially, the entire processed text
+    hierarchy_stack = []
+    
+    # Extract document title
+    title, text_to_chunk = detect_document_title(processed_text)
+    if title:
+        chunks_with_metadata.append(create_chunk_with_metadata(title, "Document Title", {}, section_header=title))
+        current_metadata["Document Title"] = title
+        hierarchy_stack.append({"level": 0, "title": title, "type": "Document Title"})
 
-    # --- 1. Extract Document Title ---
-    title_match = title_pattern.search(text_to_chunk)
-    if title_match:
-        title = title_match.group(0).strip()
-        chunks_with_metadata.append({"text": title, "metadata": {"Type": "Document Title", "Title": title}})
-        current_metadata["Document Title"] = title   # Store for subsequent chunks
-        text_to_chunk = text_to_chunk[title_match.end():]   # Remove title from text to chunk
-        print(f"Found Document Title: '{title}'")
-    else:
-        print("No Document Title found matching the pattern.")
-
-    # --- 2. Chunk by Sections ---
-    sections = []
-    for pattern in section_patterns:
-        sections.extend([(match.start(), match.end(), match.group(0).strip()) for match in pattern.finditer(text_to_chunk)])
-    sections.sort(key=lambda x: x[0])   # Sort sections by their starting position
-    print(f"Found {len(sections)} sections based on patterns: {section_patterns}")
-
+    # Find and process sections
+    sections = find_sections(text_to_chunk)
+    
     start = 0
     for sec_start, sec_end, section_header in sections:
         print(f"\nProcessing section: '{section_header}' (start: {sec_start}, end: {sec_end})")
+        
+        # Update hierarchy
+        section_level = determine_section_level(section_header)
+        hierarchy_stack = update_hierarchy_stack(hierarchy_stack, section_header, section_level)
+        parent_path = build_parent_path(hierarchy_stack[:-1])  # Exclude current section
+        
+        # Process text before section
         chunk_before_section = text_to_chunk[start:sec_start].strip()
         if chunk_before_section:
-            print(f"  Chunking text before section:\n'{chunk_before_section[:100]}...'") # Print first 100 chars
-            for c in sentence_based_chunking_with_semantic(chunk_before_section, determine_chunk_size(chunk_before_section), CHUNK_OVERLAP,
-                                                            language):
-                chunks_with_metadata.append({"text": c, "metadata": current_metadata.copy() | {"Type": "Paragraph"}})
-                print(f"    Created Paragraph chunk: '{c[:80]}...'") # Print first 80 chars
-        chunks_with_metadata.append({"text": section_header + text_to_chunk[sec_start + len(section_header):sec_end].strip(),
-                                    "metadata": current_metadata.copy() | {"Type": "Section", "Section Heading": section_header}})
-        print(f"  Created Section chunk: '{chunks_with_metadata[-1]['text'][:100]}...'") # Print first 100 chars
-        current_metadata["Section Heading"] = section_header   # Update current section
+            print(f"  Chunking text before section:\n'{chunk_before_section[:100]}...'")
+            chunks_with_metadata.extend(process_text_chunks(chunk_before_section, current_metadata, parent_path, language, CHUNK_OVERLAP))
+        
+        # Create section chunk
+        section_text = section_header + text_to_chunk[sec_start + len(section_header):sec_end].strip()
+        chunks_with_metadata.append(create_chunk_with_metadata(section_text, "Section", current_metadata, parent_path, section_header))
+        print(f"  Created Section chunk: '{section_text[:100]}...'")
+        current_metadata["Section Heading"] = section_header
         start = sec_end
 
+    # Process remaining text
     chunk_after_sections = text_to_chunk[start:].strip()
     if chunk_after_sections:
-        print(f"\nChunking text after last section:\n'{chunk_after_sections[:100]}...'") # Print first 100 chars
-        for c in sentence_based_chunking_with_semantic(chunk_after_sections, determine_chunk_size(chunk_after_sections), CHUNK_OVERLAP, language):
-            chunks_with_metadata.append({"text": c, "metadata": current_metadata.copy() | {"Type": "Paragraph"}})
-            print(f"    Created Paragraph chunk: '{c[:80]}...'") # Print first 80 chars
+        print(f"\nChunking text after last section:\n'{chunk_after_sections[:100]}...'")
+        parent_path = build_parent_path(hierarchy_stack)
+        chunks_with_metadata.extend(process_text_chunks(chunk_after_sections, current_metadata, parent_path, language, CHUNK_OVERLAP))
     else:
         print("No text found after the last section.")
 
-    # --- If no sections are found, chunk the entire text ---
+    # Handle case with no sections
     if not sections and text_to_chunk.strip():
         print("\nNo sections found, chunking the entire remaining text.")
-        for c in sentence_based_chunking_with_semantic(text_to_chunk, determine_chunk_size(text_to_chunk), CHUNK_OVERLAP, language):
-            chunks_with_metadata.append({"text": c, "metadata": current_metadata.copy() | {"Type": "Paragraph"}})
-            print(f"  Created Paragraph chunk (no sections): '{c[:80]}...'") # Print first 80 chars
+        parent_path = build_parent_path(hierarchy_stack)
+        chunks_with_metadata.extend(process_text_chunks(text_to_chunk, current_metadata, parent_path, language, CHUNK_OVERLAP))
 
-    # --- 3. Extract Dates from Chunks and Add to Metadata ---
-    for chunk in chunks_with_metadata:
-        date_match = date_pattern.search(chunk["text"])
-        if date_match:
-            chunk["metadata"]["Date"] = date_match.group(0)
-            print(f"  Found Date '{chunk['metadata']['Date']}' in chunk: '{chunk['text'][:50]}...'") # Print first 50 chars
+    # Post-processing
+    add_dates_to_chunks(chunks_with_metadata)
+    final_chunks_with_metadata = replace_special_content_markers(chunks_with_metadata, table_map)
 
-    # --- 4.  Replace Markers for Special Content ---
-    final_chunks_with_metadata = []
-    for chunk in chunks_with_metadata:
-        chunk_text = chunk["text"]
-        for marker, special_content in table_map.items():
-            chunk_text = chunk_text.replace(marker, special_content)
-        final_chunks_with_metadata.append({"text": chunk_text, "metadata": chunk["metadata"]})
-
-    # --- 5. Convert to format compatible with retrieval system ---
-    # Keep only the text for embeddings, but store text with metadata for retrieval
+    # Prepare output
     chunk_texts = [chunk["text"] for chunk in final_chunks_with_metadata]
-
-    # Store the full metadata structure in the global variable for later use
     chunk_metadata = final_chunks_with_metadata
 
     print(f"Total number of chunks created: {len(chunk_texts)}")

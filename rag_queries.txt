@@ -1,0 +1,327 @@
+
+
+--- Query: 2025-05-21 21:57:33 ---
+Question: Qué controles deficientes ( deficiencia de control interno) se encontrarón en la entidad
+
+Sources:
+  1. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 883 (TEXT) ---
+Como resultado de la evaluación efectuada, este Organismo Superior de Control concluye lo siguiente:
+
+--- PROCESSED BLOCK 884 (HEADING) ---...
+
+  2. data\SpanishRoadContract.txt
+     Text: # Evaluación de la Contraloría General de la República...
+
+  3. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 24 (TEXT) ---
+El presente informe tiene como objeto dar cuenta a las instancias correspondientes de la Contraloría General, del resultado de la evaluación efectuada a la documentación remitida por la Entidad, como sustento de su solicitud de autorización de la Prestación Adicional de Obra N° 32 (en adelante, la PAO N° 32)....
+
+  4. data\SpanishRoadContract.txt
+     Text: Cabe hacer notar que, desde la aprobación de la PAO N° 23 se superó la incidencia del 15% del monto del contrato original; sin embargo, se ha verificado que la Entidad no tramitó ante la Contraloría General, la correspondiente solicitud de autorización previa a la ejecución y al pago, incumpliendo lo establecido por la normativa vigente....
+
+  5. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 747 (TEXT) ---
+Ante lo señalado por la Entidad, mediante al Acta de Inspección Física a la Obra del 18 de setiembre de 2024, se solicitó el informe del especialista en Geología y Geotecnia de la Supervisión mediante el cual se sustentó la inestabilidad y la modificación mencionada; sin embargo, a la fecha de emisión del presente informe, la Entidad no ha remitido la documentación solicitada....
+
+  6. data\SpanishRoadContract.txt
+     Text: ## B. DESCRIPCIÓN DE TRABAJOS VERIFICADOS POR LA CONTRALORÍA GENERAL DE LA REPÚBLICA...
+
+  7. data\SpanishRoadContract.txt
+     Text: Cabe indicar que, atendiendo al principio del carácter selectivo del control gubernamental, previsto en el literal l) del artículo 9 de la Ley N° 27785, en la revisión de la información antes referida se priorizará el análisis de las actividades o aspectos críticos o que denoten mayor riesgo en el sustento de la PAO N° 32. --- PROCESSED BLOCK 26 (HEADING) ---...
+
+  8. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 242 (TEXT) ---
+En ese contexto, mediante el Oficio N° 000126-2024-CG/SCP de 12 de setiembre de 2024 (dentro del plazo establecido en la Directiva PAO), la Subgerencia de Control Previo de Adicionales de Obra y Supervisión de Obra de la Contraloría General, requirió información complementaria a la Entidad, otorgándose un plazo de cinco (5) días hábiles hasta el 19 de setiembre de 2024....
+
+  9. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 22 (TEXT) ---
+La actividad de control previo está relacionada con la solicitud de autorización, previa a la ejecución y pago, de las prestaciones adicionales que generan el Presupuesto Adicional de Obra N° 32 de la obra: “Mejoramiento de la Carretera Chuquicara - Puente Quiroz - Tauca - Cabana - Huandoval - Pallasca, Tramo Tauca - Pallasca” - CUI N° 2078363 (en adelante, Obra), presentada por el Proyecto Especial de Infraestructura de Transporte Nacional - Provias Nacional (en adelante, Provias Nacional o Entidad), mediante el Oficio N° 300-2024-MTC/20 de 5 de setiembre de 2024 (Expediente N° 0820240571794 de 5 de setiembre de 2024) a la Contraloría General de la República (en adelante, Contraloría General)....
+
+  10. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 29 (TEXT) ---
+c) A través del Oficio N° 000126-2024-CG/SCP de 12 de setiembre de 2024, recibido el mismo día por la Entidad, la Contraloría General solicitó información complementaria de la PAO N° 32....
+
+
+Answer:
+No se menciona específicamente en el contexto proporcionado una deficiencia de control interno en la entidad. Sin embargo, se indica que la Entidad no tramitó ante la Contraloría General la solicitud de autorización previa a la ejecución y al pago de la Prestación Adicional de Obra N° 23, incumpliendo lo establecido por la normativa vigente. Además, la Entidad no ha remitido la documentación solicitada respecto a la inestabilidad y modificación mencionada en el Acta de Inspección Física a la Obra del 18 de septiembre de 2024.
+--------------------------------------------------
+
+--- Query: 2025-05-21 21:59:30 ---
+Question: What are the entities involved ?
+
+Sources:
+  1. data\SpanishRoadContract.txt
+     Text: 3.1 Se encuentran comprendidos dentro de los alcances de la presente norma, bajo el término genérico de Entidad:...
+
+  2. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 189 (TEXT) ---
+Respecto de la condición de Entidad de Provias Nacional, el artículo 3° de la Ley N° 30225, Ley de Contrataciones del Estado, contempla dentro de su ámbito de aplicación a los proyectos adscritos a los Ministerios como Entidades en materia de contratación pública, como se muestra a continuación:
+
+--- PROCESSED BLOCK 190 (TEXT) ---
+"Artículo 3....
+
+  3. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 203 (HEADING) ---
+## 2.1.4. Verificación de los plazos
+
+--- PROCESSED BLOCK 204 (HEADING) ---
+### a) Tramitación y aprobación del adicional por parte de la Entidad
+
+--- PROCESSED BLOCK 205 (HEADING) ---...
+
+  4. data\SpanishRoadContract.txt
+     Text: (...)
+
+--- PROCESSED BLOCK 604 (HEADING) ---...
+
+  5. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 910 (TEXT) ---
+Lima, 14 de octubre de 2024. --- PROCESSED BLOCK 911 (TEXT) ---
+ING. CESAR SOTELO TRINIDAD Supervisor de equipo ING. CARLOS NAVARRO GOMEZ Jefe de equipo
+
+--- PROCESSED BLOCK 912 (TEXT) ---
+ABOG. JULISSA GARCIA MACEDA Evaluadora legal CPC. IRENE CAYO DEL CASTILLO Evaluadora presupuestal
+
+--- PROCESSED BLOCK 913 (TEXT) ---
+ING. CESARS PEÑA MARCELO Evaluador técnico ARQ....
+
+  6. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 756 (TEXT) ---
+Respecto a la redistribución del DME N° 34, la entidad señala lo siguiente:
+
+--- PROCESSED BLOCK 757 (TEXT) ---
+"(…)
+
+--- PROCESSED BLOCK 758 (TEXT) ---
+Redistribución de transportes del DME N°34
+
+--- PROCESSED BLOCK 759 (TEXT) ---
+Es durante la etapa de ejecución de ambos DME’s, donde se presentaron problemas de índole social, motivados por los propietarios, quienes demandaron modificaciones al acuerdo inicial, cuyo impacto resulto en menor cantidad de banquetas y por ende menor capacidad de la prevista inicialmente....
+
+  7. data\SpanishRoadContract.txt
+     Text: (...)
+
+--- PROCESSED BLOCK 582 (HEADING) ---...
+
+  8. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 192 (TEXT) ---
+(…)
+
+--- PROCESSED BLOCK 193 (TEXT) ---
+a) Los Ministerios y sus organismos públicos, programas y proyectos adscritos”....
+
+  9. data\SpanishRoadContract.txt
+     Text: Los segmentos a intervenirse se detallan en la siguiente imagen:
+
+--- PROCESSED BLOCK 566 (TEXT) ---
+Imagen N° 2
+
+--- PROCESSED BLOCK 567 (TEXT) ---
+Tabla N?...
+
+  10. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 198 (TEXT) ---
+La Directiva N° 010-2023-CG/VCST en su numeral 7.1.2 establece que la entidad debe presentar la solicitud de autorización previa mediante documento escrito, suscrito por el Titular de la entidad, o funcionario público competente debidamente acreditado, dirigido a la Contraloría General de la República, en el plazo máximo de cinco (5) días hábiles, contados desde el día hábil siguiente de la fecha de aprobación de la PAO por parte de la entidad....
+
+
+Answer:
+The entities involved, as mentioned in the context, include the Ministries and their public organizations, programs, and projects. Specifically, Provias Nacional is mentioned as an entity under the scope of public contracting as per Article 3 of the Ley N° 30225, Ley de Contrataciones del Estado.
+--------------------------------------------------
+
+--- Query: 2025-05-21 22:00:12 ---
+Question: who is Provias Nacional 
+
+Sources:
+  1. data\SpanishRoadContract.txt
+     Text: # PROYECTO ESPECIAL DE INFRAESTRUCTURA DE TRANSPORTE NACIONAL - PROVIAS NACIONAL...
+
+  2. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 20 (TEXT) ---
+Proyecto Especial de Infraestructura de Transporte Nacional - Provias Nacional
+
+--- PROCESSED BLOCK 21 (HEADING) ---...
+
+  3. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 194 (TEXT) ---
+Asimismo, en la Resolución Ministerial N° 427-2018 MTC/01 de 6 de junio de 2018, el Ministerio de Transportes y Comunicaciones estableció que Provias Nacional constituye una Entidad comprendida dentro del ámbito de aplicación de la normativa de contrataciones del Estado, teniendo su Director Ejecutivo la calidad de Titular de la Entidad del Proyecto Especial, siendo competente para ejercer las funciones para la aprobación, autorización y supervisión de los procesos de contratación de bienes, servicios y obras....
+
+  4. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 195 (TEXT) ---
+De lo expuesto, se desprende que el director ejecutivo es el titular de Provias Nacional, que es considerada una Entidad en el ámbito de aplicación de la normativa de contrataciones del Estado, siendo este la autoridad competente para aprobar las prestaciones adicionales de obra....
+
+  5. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 184 (TEXT) ---
+Al respecto, el artículo 1º del Decreto Supremo Nº 033-2002-MTC publicado el 12 de julio de 2002 y modificatorias, crea el Proyecto Especial de Infraestructura de Transporte Nacional - PROVIAS NACIONAL, como Unidad Ejecutora del Pliego Ministerio de Transportes, Comunicaciones, Vivienda y Construcción, de carácter temporal, con
+
+--- PROCESSED BLOCK 185 (TEXT) ---
+⁸ En la Hoja Informativa N° 000018-2024-CG/SCP-ICC de 14 de octubre de 2024, la evaluadora presupuestal señaló que el adicional no ha sido pagado....
+
+  6. data\SpanishRoadContract.txt
+     Text: Posteriormente, debe cursarse oficio al Director Ejecutivo de Provias Nacional y al Jefe del Órgano de Control Institucional de Provias Nacional en los términos expuestos en las conclusiones, referido a la solicitud de autorización, previa a la ejecución y pago, de las prestaciones adicionales que generan la PAO N° 32 de la obra “Mejoramiento de la Carretera Chuquicara - Puente Quiroz - Tauca - Cabana - Huandoval - Pallasca, Tramo Tauca - Pallasca” - CUI N° 2078363, a cargo de Provias Nacional....
+
+  7. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 27 (TEXT) ---
+a) Mediante el Oficio N° 300-2024-MTC/20 de 5 de setiembre de 2024 (Expediente N° 0820240571794 de 5 de setiembre de 2024), el director ejecutivo de Provias Nacional, solicitó a la Contraloría General la autorización, previa a la ejecución y pago de la PAO N° 32....
+
+  8. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 100 (TEXT) ---
+Al respecto, mediante la Carta N° 2510019-CG-24-0741 de 22 de julio de 2024, la Supervisión comunicó a Provias Nacional, la ratificación de la necesidad de ejecutar la prestación adicional de obra señalando, entre otros, que se genera por aspectos técnicos imprescindibles sustentados en los informes de sus especialistas (metrados, costos y valorizaciones; suelos y pavimentos; trazo, topografía, diseño vial, señalización y seguridad vial; arqueología e impacto ambiental)....
+
+  9. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 189 (TEXT) ---
+Respecto de la condición de Entidad de Provias Nacional, el artículo 3° de la Ley N° 30225, Ley de Contrataciones del Estado, contempla dentro de su ámbito de aplicación a los proyectos adscritos a los Ministerios como Entidades en materia de contratación pública, como se muestra a continuación:
+
+--- PROCESSED BLOCK 190 (TEXT) ---
+"Artículo 3....
+
+  10. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 186 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA- HUANDOVAL- PALLASCA, TRAMO TAUCA - PALLASCA”
+
+--- PROCESSED BLOCK 187 (TEXT) ---
+INFORME N° 24512-2024-CG/SCP-AO                                                                                                  Página 12 de76
+
+--- PROCESSED BLOCK 188 (TEXT) ---
+autonomía técnica, administrativa y financiera, encargado de las actividades de preparación, gestión, administración y ejecución de proyectos de infraestructura de transporte relacionada a la Red Vial Nacional no concesionada, así como, de la planificación, gestión y control de actividades y recursos económicos que se emplean para el mantenimiento y seguridad de las carreteras y puentes de la Red Vial Nacional no concesionada; además, emite autorizaciones para el uso del derecho de vía y de los vehículos especiales en toda la Red Vial Nacional....
+
+
+Answer:
+Provias Nacional is a Special Project for National Transport Infrastructure, created as a temporary Executing Unit under the Ministry of Transport, Communications, Housing, and Construction. It operates with technical, administrative, and financial autonomy, responsible for the preparation, management, administration, and execution of transport infrastructure projects related to the non-concessioned National Road Network. It also handles the planning, management, and control of activities and economic resources used for the maintenance and safety of roads and bridges in the non-concessioned National Road Network. Additionally, Provias Nacional issues authorizations for the use of rights of way and special vehicles throughout the National Road Network. It is considered an Entity within the scope of the State's contracting regulations, with its Executive Director acting as the head of the Entity, competent to approve, authorize, and supervise procurement processes for goods, services, and works.
+--------------------------------------------------
+
+--- Query: 2025-05-24 10:25:52 ---
+Question: Was the authorization for the additional work approved?
+
+Sources:
+  1. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 178 (TEXT) ---
+Según el análisis realizado por el evaluador presupuestal, se tiene que la PAO N° 32 no se encuentra pagada⁸. --- PROCESSED BLOCK 179 (TEXT) ---
+De acuerdo con lo descrito en los literales a), b), c) y d), no se advierte que se incurra en los supuestos de improcedencia; por lo que, la Contraloría General de la República es competente para pronunciarse respecto a la PAO N° 32. --- PROCESSED BLOCK 180 (HEADING) ---
+## 2.1.2. Aprobación del adicional y presentación de la solicitud por autoridad competente
+
+--- PROCESSED BLOCK 181 (TEXT) ---
+El numeral 34.5 del artículo 34° de la Ley N° 30225, Ley de Contrataciones del Estado, concordante con el artículo 206 de su Reglamento, establece que en el supuesto que resulte indispensable la realización de prestaciones adicionales de obra por deficiencias del Expediente Técnico o situaciones imprevisibles posteriores al perfeccionamiento del contrato o por causas no previsibles en el Expediente Técnico de obra y que no son responsabilidad del contratista (mayores al quince por ciento (15%) y hasta un máximo de cincuenta por ciento (50%) del monto originalmente contratado), sin perjuicio de la responsabilidad que pueda corresponder al proyectista, el Titular de la Entidad puede decidir autorizarlas, siempre que se cuente con los recursos necesarios. Adicionalmente, para la ejecución y pago, debe contarse con la autorización previa de la Contraloría General de la República. --- PROCESSED BLOCK 182 (TEXT) ---
+En concordancia, el numeral 205.1 del artículo 205° del Reglamento de la Ley N° 30225 Ley de Contrataciones del Estado establece que solo procede la ejecución de prestaciones adicionales de obra cuando previamente se cuente con la certificación de crédito presupuestario o previsión presupuestal, según las reglas previstas en la normatividad del Sistema Nacional de Presupuesto Público y con la resolución del Titular de la Entidad o del servidor del siguiente nivel de decisión a quien se hubiera delegado esta atribución y en los casos en que sus montos, restándole los prestación deductivos vinculados, no excedan el quince por ciento (15%) del monto del contrato original....
+
+  2. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 893 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA - HUANDOVAL- PALLASCA, TRAMO TAUCA- PALLASCA”
+
+--- PROCESSED BLOCK 894 (TEXT) ---
+INFORME N° 24512-2024-CG/SCP-AO
+
+--- PROCESSED BLOCK 895 (TEXT) ---
+Evaluación técnica de las prestaciones solicitadas en el adicional en trámite:
+
+--- PROCESSED BLOCK 896 (TEXT) ---...
+
+  3. data\SpanishRoadContract.txt
+     Text: # AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 03 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA - PUENTE QUIROZ - TAUCA - CABANA - HUANDOVAL - PALLASCA, TRAMO TAUCA - PALLASCA” - CUI N° 2078363...
+
+  4. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 114 (HEADING) ---
+## 2.1. Evaluación legal³
+
+--- PROCESSED BLOCK 115 (HEADING) ---
+### 2.1.1. Competencia de la Contraloría General de la República
+
+--- PROCESSED BLOCK 116 (TEXT) ---
+De conformidad con lo dispuesto en el literal k) del artículo 22° de la Ley Orgánica de la Contraloría General, corresponde a la Contraloría General otorgar autorización, previa a la ejecución y pago, de los presupuestos adicionales de obra y de mayores prestaciones de supervisión en los casos distintos a los adicionales de obras, cuyos montos excedan a los previstos en la Ley de Contrataciones del Estado y de su Reglamento, respectivamente, cualquiera sea la fuente de financiamiento. --- PROCESSED BLOCK 117 (TEXT) ---
+Asimismo, el numeral 34.5 del artículo 34° de la Ley Nº 30225, Ley de Contrataciones del Estado, concordante con el artículo 206° de su Reglamento, establece que en el supuesto que resulte indispensable la realización de prestaciones adicionales de obra por deficiencias del expediente técnico o situaciones imprevisibles posteriores al perfeccionamiento del contrato o por causas no previsibles en el expediente técnico de obra y que no son responsabilidad del contratista, mayores al quince por ciento (15%) y hasta un máximo de cincuenta por ciento (50%) del monto originalmente contratado, sin perjuicio de la responsabilidad que pueda corresponder al proyectista, el Titular de la Entidad, puede decidir autorizarlas, siempre que se cuente con los recursos necesarios. Adicionalmente, para la ejecución y pago, debe contarse con la autorización previa de la Contraloría General de la República....
+
+  5. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 114 (HEADING) ---
+## 2.1. Evaluación legal³
+
+--- PROCESSED BLOCK 115 (HEADING) ---
+### 2.1.1. Competencia de la Contraloría General de la República
+
+--- PROCESSED BLOCK 116 (TEXT) ---
+De conformidad con lo dispuesto en el literal k) del artículo 22° de la Ley Orgánica de la Contraloría General, corresponde a la Contraloría General otorgar autorización, previa a la ejecución y pago, de los presupuestos adicionales de obra y de mayores prestaciones de supervisión en los casos distintos a los adicionales de obras, cuyos montos excedan a los previstos en la Ley de Contrataciones del Estado y de su Reglamento, respectivamente, cualquiera sea la fuente de financiamiento. --- PROCESSED BLOCK 117 (TEXT) ---
+Asimismo, el numeral 34.5 del artículo 34° de la Ley Nº 30225, Ley de Contrataciones del Estado, concordante con el artículo 206° de su Reglamento, establece que en el supuesto que resulte indispensable la realización de prestaciones adicionales de obra por deficiencias del expediente técnico o situaciones imprevisibles posteriores al perfeccionamiento del contrato o por causas no previsibles en el expediente técnico de obra y que no son responsabilidad del contratista, mayores al quince por ciento (15%) y hasta un máximo de cincuenta por ciento (50%) del monto originalmente contratado, sin perjuicio de la responsabilidad que pueda corresponder al proyectista, el Titular de la Entidad, puede decidir autorizarlas, siempre que se cuente con los recursos necesarios. Adicionalmente, para la ejecución y pago, debe contarse con la autorización previa de la Contraloría General de la República. --- PROCESSED BLOCK 118 (TEXT) ---
+En la misma línea, en el numeral 6.3 de la Directiva de la Prestación Adicional de Obra (en adelante Directiva PAO), se establece que la Contraloría General ejerce el servicio de control previo de las prestaciones adicionales de obra, cuando la Entidad, luego de la aprobación de una PAO que supere el quince por ciento (15%) del monto del contrato original de la obra hasta un máximo del cincuenta por ciento (50%) de dicho monto, solicita a la Contraloría General la autorización previa a su ejecución y pago, conforme lo prevé la normativa de contrataciones aplicable. --- PROCESSED BLOCK 119 (TEXT) ---
+2 Publicada en el Diario Oficial “El Peruano” el 16 de julio de 2023. --- PROCESSED BLOCK 120 (TEXT) ---
+3 De acuerdo a la Hoja Informativa N° 000004-2024-CG/SCP-JGM de 14 de octubre de 2024. --- PROCESSED BLOCK 121 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA- HUANDOVAL- PALLASCA, TRAMO TAUCA- PALLASCA”
+
+--- PROCESSED BLOCK 122 (TEXT) ---
+INFORME N° 24512-2024-CG/SCP-AO                                                                                                   Página 7 de76
+
+--- PROCESSED BLOCK 123 (TEXT) ---
+Por su parte, el numeral de 6.4 de la Directiva PAO establece que una PAO, para efectos de la autorización previa de la Contraloría, es aquella no considerada en el expediente técnico de obra, ni en el contrato original, cuya realización resulta indispensable y/o necesaria para dar cumplimiento a la meta prevista de la obra principal y que da lugar a un presupuesto adicional. --- PROCESSED BLOCK 124 (TEXT) ---
+Además, el literal a) del numeral 7.2.2.2 de la Directiva PAO establece que la solicitud de autorización previa es improcedente, si se advierte la ocurrencia de cualquiera de los supuestos siguientes:
+
+--- PROCESSED BLOCK 125 (TEXT) ---
+(i) Si como consecuencia de la evaluación se determina que no es una PAO....
+
+  6. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 114 (HEADING) ---
+## 2.1. Evaluación legal³
+
+--- PROCESSED BLOCK 115 (HEADING) ---
+### 2.1.1. Competencia de la Contraloría General de la República
+
+--- PROCESSED BLOCK 116 (TEXT) ---
+De conformidad con lo dispuesto en el literal k) del artículo 22° de la Ley Orgánica de la Contraloría General, corresponde a la Contraloría General otorgar autorización, previa a la ejecución y pago, de los presupuestos adicionales de obra y de mayores prestaciones de supervisión en los casos distintos a los adicionales de obras, cuyos montos excedan a los previstos en la Ley de Contrataciones del Estado y de su Reglamento, respectivamente, cualquiera sea la fuente de financiamiento. --- PROCESSED BLOCK 117 (TEXT) ---
+Asimismo, el numeral 34.5 del artículo 34° de la Ley Nº 30225, Ley de Contrataciones del Estado, concordante con el artículo 206° de su Reglamento, establece que en el supuesto que resulte indispensable la realización de prestaciones adicionales de obra por deficiencias del expediente técnico o situaciones imprevisibles posteriores al perfeccionamiento del contrato o por causas no previsibles en el expediente técnico de obra y que no son responsabilidad del contratista, mayores al quince por ciento (15%) y hasta un máximo de cincuenta por ciento (50%) del monto originalmente contratado, sin perjuicio de la responsabilidad que pueda corresponder al proyectista, el Titular de la Entidad, puede decidir autorizarlas, siempre que se cuente con los recursos necesarios. Adicionalmente, para la ejecución y pago, debe contarse con la autorización previa de la Contraloría General de la República. --- PROCESSED BLOCK 118 (TEXT) ---
+En la misma línea, en el numeral 6.3 de la Directiva de la Prestación Adicional de Obra (en adelante Directiva PAO), se establece que la Contraloría General ejerce el servicio de control previo de las prestaciones adicionales de obra, cuando la Entidad, luego de la aprobación de una PAO que supere el quince por ciento (15%) del monto del contrato original de la obra hasta un máximo del cincuenta por ciento (50%) de dicho monto, solicita a la Contraloría General la autorización previa a su ejecución y pago, conforme lo prevé la normativa de contrataciones aplicable. --- PROCESSED BLOCK 119 (TEXT) ---
+2 Publicada en el Diario Oficial “El Peruano” el 16 de julio de 2023. --- PROCESSED BLOCK 120 (TEXT) ---
+3 De acuerdo a la Hoja Informativa N° 000004-2024-CG/SCP-JGM de 14 de octubre de 2024. --- PROCESSED BLOCK 121 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA- HUANDOVAL- PALLASCA, TRAMO TAUCA- PALLASCA”
+
+--- PROCESSED BLOCK 122 (TEXT) ---
+INFORME N° 24512-2024-CG/SCP-AO                                                                                                   Página 7 de76
+
+--- PROCESSED BLOCK 123 (TEXT) ---
+Por su parte, el numeral de 6.4 de la Directiva PAO establece que una PAO, para efectos de la autorización previa de la Contraloría, es aquella no considerada en el expediente técnico de obra, ni en el contrato original, cuya realización resulta indispensable y/o necesaria para dar cumplimiento a la meta prevista de la obra principal y que da lugar a un presupuesto adicional. --- PROCESSED BLOCK 124 (TEXT) ---
+Además, el literal a) del numeral 7.2.2.2 de la Directiva PAO establece que la solicitud de autorización previa es improcedente, si se advierte la ocurrencia de cualquiera de los supuestos siguientes:
+
+--- PROCESSED BLOCK 125 (TEXT) ---
+(i) Si como consecuencia de la evaluación se determina que no es una PAO. --- PROCESSED BLOCK 126 (TEXT) ---
+(ii) Si la incidencia acumulada no supera el quince por ciento (15%) del monto del contrato original. --- PROCESSED BLOCK 127 (TEXT) ---
+(iii) Si la incidencia acumulada supera el cincuenta por ciento (50%) del monto del contrato original....
+
+  7. data\SpanishRoadContract.txt
+     Text: 24+165 L.I.) y redistribución del transporte del DME N° 34 (por la reducción de su capacidad), se ha generado a partir de la incorporación de segmentos arqueológicos al Plan de Monitoreo Arqueológico (PMA) no siendo considerados en el Expediente Técnico de Obra por presentar restricciones arqueológicas, limitándose a desarrollar una ingeniería ajustada al trazo y ancho existente (3.50 a 4.00 mts.) de la carretera. --- PROCESSED BLOCK 361 (TEXT) ---
+Solución propuesta:
+
+--- PROCESSED BLOCK 362 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA - HUANDOVAL- PALLASCA, TRAMO TAUCA - PALLASCA”
+
+--- PROCESSED BLOCK 363 (TEXT) ---
+El Supervisor presentó el Adicional N° 32 para la intervención en los 17 tramos de la carretera Tauca - Huandoval y Huandoval - Pallasca que no fueron considerados en el expediente técnico contractual, por presentar restricciones arqueológicas, por lo que se limitó a desarrollar una ingeniería ajustada al trazo y ancho existente (3.50 a 4.00 mts.) de la carretera....
+
+  8. data\SpanishRoadContract.txt
+     Text: 24+165 L.I.) y redistribución del transporte del DME N° 34 (por la reducción de su capacidad), se ha generado a partir de la incorporación de segmentos arqueológicos al Plan de Monitoreo Arqueológico (PMA) no siendo considerados en el Expediente Técnico de Obra por presentar restricciones arqueológicas, limitándose a desarrollar una ingeniería ajustada al trazo y ancho existente (3.50 a 4.00 mts.) de la carretera. --- PROCESSED BLOCK 361 (TEXT) ---
+Solución propuesta:
+
+--- PROCESSED BLOCK 362 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N° 32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA - HUANDOVAL- PALLASCA, TRAMO TAUCA - PALLASCA”
+
+--- PROCESSED BLOCK 363 (TEXT) ---
+El Supervisor presentó el Adicional N° 32 para la intervención en los 17 tramos de la carretera Tauca - Huandoval y Huandoval - Pallasca que no fueron considerados en el expediente técnico contractual, por presentar restricciones arqueológicas, por lo que se limitó a desarrollar una ingeniería ajustada al trazo y ancho existente (3.50 a 4.00 mts.) de la carretera....
+
+  9. data\SpanishRoadContract.txt
+     Text: 5.1 En ese sentido, estando a lo determinado técnica y contractualmente por las Direcciones de Estudios, (Memorándum N° 3051-2024-MTC/20.8 e Informe N° 067- 2024-MTC/20.8.4.09) y de Obras (Memorándums Nros. 4428-2024-MTC/20.9 y 4345- 2024-MTC/20.9 e Informes Nros. 286-2024-MTC/20.9-AERC y 415-2024-MTC/ 20.9- AASG) en los cuales esta Oficina no ha participado y estando en el marco de sus funciones establecidas en los artículos 27 y 29 del Manual de Operaciones de PROVIAS NACIONAL, contándose además con la Certificación de Crédito Presupuestario para el año 2024 y Previsión Presupuestaria para el año 2025 emitidas por la Oficina de Planeamiento y Presupuesto de la Entidad mediante el Informe N° 4654-2024-MTC/20.4 del 27.08.2024, se considera que al haberse cumplido el procedimiento y los requisitos establecidos en el Artículo 34 de la Ley y en el Artículo 205 del Reglamento, resulta legalmente viable continuar con el trámite de aprobación de la Prestación Adicional de Obra N° 32 y Presupuesto Deductivo Vinculado N° 32....
+
+  10. data\SpanishRoadContract.txt
+     Text: --- PROCESSED BLOCK 903 (TEXT) ---
+En consecuencia, de acuerdo a los criterios de evaluación precitados, se determina desestimar la solicitud de autorización, previa a la ejecución y pago, de las prestaciones adicionales que generan la Prestación Adicional de Obra N° 32; toda vez que, a la fecha la Entidad no cuenta con disponibilidad presupuestal para cubrir los trabajos programados del contrato vigente para el año
+
+--- PROCESSED BLOCK 904 (TEXT) ---
+AUTORIZACIÓN, PREVIA A LA EJECUCIÓN Y PAGO, DE LAS PRESTACIONES ADICIONALES QUE GENERAN EL PRESUPUESTO ADICIONAL DE OBRA N°32 DE LA OBRA: “MEJORAMIENTO DE LA CARRETERA CHUQUICARA- PUENTE QUIROZ- TAUCA - CABANA- HUANDOVAL- PALLASCA, TRAMO TAUCA- PALLASCA”
+
+--- PROCESSED BLOCK 905 (TEXT) ---
+INFORME N° 24512-2024-CG/SCP-AO
+
+--- PROCESSED BLOCK 906 (TEXT) ---
+Página 75 de 76
+
+--- PROCESSED BLOCK 907 (TEXT) ---
+2024; asimismo, no se ha sustentado la necesidad de la ejecución trabajos de movimiento de tierras, en los segmentos arqueológicos que presentan un ancho actual de calzada mayor al proyectado; los taludes de corte (V:H) determinados en la Clasificación de Materiales de Corte efectuada en el expediente del adicional difieren de lo establecido en la Tabla 304.10 del Manual del MTC, no se ha sustentado la necesidad de transporte de material excedente al DME 43 y 40; así como, falta de sustento en la cuantificación de los metrados de diversas partidas, y en el cálculo del monto de los gastos generales variables....
+
+
+Answer:
+The authorization for the additional work, specifically for the Prestación Adicional de Obra N° 32, was not approved. The request for authorization was disapproved because the entity did not have the budgetary availability to cover the programmed works for the current contract year, and there were issues with justifying the necessity of certain works and discrepancies in technical specifications.
+--------------------------------------------------
